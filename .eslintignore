@@ -1,0 +1,12 @@
+
+### Project
+.storybook
+__dev__
+__mocks__
+assets
+cid
+coverage
+dist
+lib
+node_modules
+*.js
