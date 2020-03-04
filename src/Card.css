@@ -25,6 +25,11 @@ tr:nth-child(2n - 1) {
   background-color: #ddd;
 }
 
+tr:nth-child(2n - 1).active,
+.active {
+  background-color: yellow;
+}
+
 img {
   border-radius: 3px;
   border: 1px solid black;
