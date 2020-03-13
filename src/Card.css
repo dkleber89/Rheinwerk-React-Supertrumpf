@@ -25,18 +25,41 @@ tr:nth-child(2n - 1) {
   background-color: #ddd;
 }
 
-tr:nth-child(2n - 1).active,
-.active {
-  background-color: yellow;
-}
-
 img {
   border-radius: 3px;
   border: 1px solid black;
   margin-bottom: 10px;
 }
 
+
+
+.light .card {
+  color: black;
+  background-color: white;
+}
+
+.dark .card {
+  color: #eee;
+  background-color: black;
+}
+
+.dark tr:nth-child(2n-1) {
+  background-color: #666;
+}
+
 .back {
   height: 388px;
-  background-color: green;
+}
+
+.light .back {
+  background-color: lightgreen;
+}
+
+.dark .back {
+  background-color: darkgreen;
+}
+
+tr:nth-child(2n - 1).active,
+.active {
+  background-color: yellow;
 }

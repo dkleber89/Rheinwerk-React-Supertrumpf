@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import './Card.css';
 import Animal from './Animal';
+import DarkMode from './DarkMode';
+import { useContext } from 'react';
 
 export default function Card({ animal, uncovered, onSelectProperty, selectedProperty }) {
   const front = (
@@ -28,11 +30,10 @@ export default function Card({ animal, uncovered, onSelectProperty, selectedProp
 
   const back = <div className="card back" />;
 
-  if (uncovered) {
-    return front;
-  }
+  const darkMode = useContext(DarkMode);
+  const darkModeClassName = darkMode ? 'dark' : 'light';
 
-  return back;
+  return <div className={darkModeClassName}>{uncovered ? front : back}</div>;
 }
 
 Card.propTypes = {
