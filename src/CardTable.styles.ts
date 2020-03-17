@@ -1,30 +1,40 @@
-export default {
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse' as 'collapse',
-  },
+import styled, { css } from 'styled-components';
 
-  td: {
-    padding: '5px 0',
-  },
+export const Td = styled.td`
+  padding: 5px 0;
+`;
 
-  tr: {
-    ':hover': {
-      backgroundColor: 'lightblue',
-    },
-  },
+interface TrProps {
+  active?: boolean;
+  darkMode: boolean;
+}
 
-  light: {
-    tr: {
-      backgroundColor: '#ddd',
-    },
-  },
+export const Tr = styled.tr`
+  ${(props: TrProps) =>
+    props.darkMode &&
+    css`
+      &:nth-child(2n) {
+        background-color: #666;
+      }
+    `}
 
-  dark: {
-    tr: { backgroundColor: '#666' },
-  },
+  ${(props: TrProps) =>
+    !props.darkMode &&
+    css`
+      &:nth-child(2n) {
+        background-color: #ddd;
+      }
+    `}
 
-  activeRow: {
-    backgroundColor: 'yellow',
-  },
-};
+  &:hover {
+    background-color: lightblue;
+  }
+
+  ${(props: TrProps) =>
+    props.active &&
+    css`
+      &&& {
+        background-color: yellow;
+      }
+    `}
+`;
