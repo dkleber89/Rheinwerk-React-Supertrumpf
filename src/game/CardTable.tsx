@@ -24,6 +24,7 @@ function CardTable({ animal, onSelectProperty, selectedProperty, darkMode, class
               darkMode={darkMode}
               active={selectedProperty === property}
               key={property}
+              className={property}
               onClick={() => {
                 onSelectProperty && onSelectProperty(property as keyof Animal);
               }}

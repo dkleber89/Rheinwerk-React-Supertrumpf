@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Snapshots should match snapshot 1`] = `
+<div
+  className="card light"
+>
+  <h1>
+    Elefant
+  </h1>
+  <img
+    alt="Elefant"
+    height="200"
+    src="/Bild"
+    width="200"
+  />
+  <table
+    className="sc-AxiKw hrgZiT"
+  >
+    <tbody>
+      <tr
+        className="sc-AxirZ ktjwNY size"
+        onClick={[Function]}
+      >
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          Größe
+        </td>
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          3.3
+           
+          m
+        </td>
+      </tr>
+      <tr
+        className="sc-AxirZ ktjwNY weight"
+        onClick={[Function]}
+      >
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          Gewicht
+        </td>
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          6000
+           
+          kg
+        </td>
+      </tr>
+      <tr
+        className="sc-AxirZ ktjwNY age"
+        onClick={[Function]}
+      >
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          Alter
+        </td>
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          70
+           
+          Jahre
+        </td>
+      </tr>
+      <tr
+        className="sc-AxirZ ktjwNY offspring"
+        onClick={[Function]}
+      >
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          Nachkommen
+        </td>
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          1
+           
+          
+        </td>
+      </tr>
+      <tr
+        className="sc-AxirZ ktjwNY speed"
+        onClick={[Function]}
+      >
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          Geschwindigkeit
+        </td>
+        <td
+          className="sc-AxjAm iROnEI"
+        >
+          40
+           
+          km/h
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

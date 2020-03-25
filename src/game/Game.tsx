@@ -22,7 +22,7 @@ export default function Game({ title }: Props) {
       <div className="info" style={infoStyles}>
         {state.playersTurn ? 'Du bist' : 'Der Computer ist'} an der Reihe
       </div>
-      <div className="cards">
+      <div className="cards" data-testid="cards-container">
         {state.player[0] && <Card animal={state.player[0]} uncovered={true} selectedProperty={state.selectedProperty} onSelectProperty={play} />}
         {state.computer[0] && <Card animal={state.computer[0]} uncovered={state.computerUncovered} selectedProperty={state.selectedProperty} />}
       </div>
