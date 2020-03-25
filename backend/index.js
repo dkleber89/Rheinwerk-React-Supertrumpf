@@ -21,5 +21,6 @@ server.post('/login', (req, res) => {
 server.use(jsonServer.router('data.json'));
 
 server.listen(3001, () => {
+  // eslint-disable-next-line no-console
   console.log('Server ist listening on Port 3001');
 });
