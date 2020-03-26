@@ -1,36 +1,53 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useState, useRef, useEffect, ReactElement, useCallback } from 'react';
+
+import './Login.scss';
 
 interface Props {
   onLogin: (username: string, password: string) => void;
+  error: string;
 }
 
-export default class Login extends React.Component<Props> {
-  username = React.createRef<HTMLInputElement>();
-  password = React.createRef<HTMLInputElement>();
+const Login = ({ onLogin, error }: Props): ReactElement => {
+  const [localError, setLocalError] = useState('');
 
-  componentDidMount() {
-    this.username.current!.focus();
-  }
+  const username = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
 
-  handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    username.current!.focus();
+  }, []);
+
+  const handleSubmit = useCallback((event: FormEvent) => {
     event.preventDefault();
+    let tempError = 'Bitte Benutzernamen und Passwort eingeben';
 
-    this.props.onLogin(this.username.current!.value, this.password.current!.value);
-  };
+    if (username.current!.value && password.current!.value) {
+      tempError = '';
+      onLogin(username.current!.value, password.current!.value);
+    }
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="">Benuzername:</label>
-          <input type="text" id="username" ref={this.username} />
+    setLocalError(tempError);
+  },[onLogin]);
+
+  return (
+    <form onSubmit={handleSubmit} className="login">
+      {(error !== '' || localError !== '') && (
+        <div className="error">
+          {error}
+          {localError}
         </div>
-        <div>
-          <label>Passwort:</label>
-          <input type="password" id="password" ref={this.password} />
-        </div>
-        <button type="submit">anmelden</button>
-      </form>
-    );
-  }
-}
+      )}
+      <div>
+        <label htmlFor="">Benutzername:</label>
+        <input type="text" id="username" ref={username} />
+      </div>
+      <div>
+        <label>Passwort:</label>
+        <input type="password" id="password" ref={password} />
+      </div>
+      <button type="submit">anmelden</button>
+    </form>
+  );
+};
+
+export default Login;

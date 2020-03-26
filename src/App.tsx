@@ -6,16 +6,19 @@ import Game from './game/Game';
 import DarkMode from './game/DarkMode';
 import Login from './login/Login';
 import Axios from 'axios';
+import Form from './admin/Form';
 
 interface State {
   darkMode: boolean;
   loggedIn: boolean;
+  error: string;
 }
 
 export default class App extends React.Component<{}, State> {
   state = {
     darkMode: false,
     loggedIn: false,
+    error: '',
   };
 
   toggleDarkMode = () => {
@@ -25,13 +28,22 @@ export default class App extends React.Component<{}, State> {
   handleLogin = async (username: string, password: string) => {
     const result = await Axios.post('http://localhost:3001/login', { username, password });
 
-    if (result.data) {
-      this.setState(prevState => update(prevState, { loggedIn: { $set: true } }));
+    let login = false;
+    let error = 'Anmeldung fehlgeschlagen';
+
+    if (result.data === true) {
+      login = true;
+      error = '';
     }
+
+    this.setState(prevState => update(prevState, { loggedIn: { $set: login }, error: { $set: error } }));
   };
 
   render() {
     return (
+      <Form onSubmit={animal => console.log(animal)}/>
+    );
+/*     return (
       <DarkMode.Provider value={this.state.darkMode}>
         {this.state.loggedIn && (
           <>
@@ -39,8 +51,8 @@ export default class App extends React.Component<{}, State> {
             <Game title="Supertrumpf" />}{' '}
           </>
         )}
-        {!this.state.loggedIn && <Login onLogin={this.handleLogin} />}
+        {!this.state.loggedIn && <Login onLogin={this.handleLogin} error={this.state.error} />}
       </DarkMode.Provider>
-    );
+    ); */
   }
 }
