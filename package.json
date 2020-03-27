@@ -37,8 +37,10 @@
     "@types/node": "^13.9.1",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "@types/yup": "^0.26.33",
     "axios": "^0.19.2",
     "classnames": "2.2.6",
+    "formik": "^2.1.4",
     "immutability-helper": "^3.0.1",
     "prop-types": "^15.7.2",
     "radium": "0.26.0",
@@ -46,7 +48,8 @@
     "react-dom": "~16.13.0",
     "react-scripts": "~3.4.0",
     "styled-components": "^5.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "@testing-library/react": "^9.5.0",

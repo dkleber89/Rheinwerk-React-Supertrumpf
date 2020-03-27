@@ -39,6 +39,16 @@
       "age": 70,
       "offspring": 60,
       "speed": 29
+    },
+    {
+      "name": "cvb",
+      "size": "123",
+      "weight": "234",
+      "age": "345",
+      "offspring": "456",
+      "speed": "567",
+      "image": "cvb.png",
+      "id": 5
     }
   ]
 }

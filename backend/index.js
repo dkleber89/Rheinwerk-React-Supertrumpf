@@ -2,11 +2,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jsonServer = require('json-server');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 const server = express();
 
+server.use(fileUpload());
 server.use(bodyParser.json());
 server.use(cors());
+
+server.use('/card', (req, res, next) => {
+  if (req.method === 'POST') {
+    const file = req.files.image;
+    const name = req.body.name.replace(' ', '_');
+    const image = `${name}.png`;
+
+    file.mv(`${__dirname}/../public/${image}`);
+    req.body.image = image;
+  }
+
+  next();
+});
 
 server.post('/login', (req, res) => {
   const { username, password } = req.body;

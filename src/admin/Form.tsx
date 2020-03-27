@@ -1,7 +1,7 @@
 import React from 'react';
 import Animal from '../game/Animal';
 import { StyledForm, StyledLabel, StyledRow } from './Form.styles';
-import useAdminCard from './useAdminCard';
+import useCardAdmin from './useCardAdmin';
 
 interface Props {
   onSubmit: (animal: Animal) => void;
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Form = ({ onSubmit, animal: initialAnimal }: Props) => {
-  const [animal, changeProperty] = useAdminCard(initialAnimal);
+  const [animal, changeProperty] = useCardAdmin(initialAnimal);
 
   return (
     <StyledForm
@@ -21,6 +21,10 @@ const Form = ({ onSubmit, animal: initialAnimal }: Props) => {
       <StyledRow>
         <StyledLabel htmlFor="name">Name:</StyledLabel>
         <input type="text" id="name" value={animal.name} onChange={changeProperty} />
+      </StyledRow>
+      <StyledRow>
+        <StyledLabel htmlFor="image">Bild:</StyledLabel>
+        <input type="file" id="image" onChange={changeProperty} />
       </StyledRow>
       {Object.keys(Animal.properties).map(property => {
         let value = (animal as any)[property];
