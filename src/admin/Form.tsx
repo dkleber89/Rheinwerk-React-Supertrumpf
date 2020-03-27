@@ -1,46 +1,59 @@
 import React from 'react';
 import Animal from '../game/Animal';
-import { StyledForm, StyledLabel, StyledRow } from './Form.styles';
-import useCardAdmin from './useCardAdmin';
+import { StyledForm, StyledLabel, StyledRow, StyledField, StyledError } from './Form.styles';
+import { Formik, ErrorMessage } from 'formik';
+import validationSchema from './validationSchema';
 
 interface Props {
   onSubmit: (animal: Animal) => void;
   animal?: Animal;
 }
 
-const Form = ({ onSubmit, animal: initialAnimal }: Props) => {
-  const [animal, changeProperty] = useCardAdmin(initialAnimal);
-
+const Form = ({ onSubmit, animal = new Animal('', '', '', '', '', '', '') }: Props) => {
   return (
-    <StyledForm
-      onSubmit={e => {
-        e.preventDefault();
-        onSubmit(animal);
+    <Formik
+      initialValues={animal}
+      validationSchema={validationSchema}
+      onSubmit={(e, actions) => {
+        onSubmit(e);
+        actions.setSubmitting(false);
       }}
     >
-      <StyledRow>
-        <StyledLabel htmlFor="name">Name:</StyledLabel>
-        <input type="text" id="name" value={animal.name} onChange={changeProperty} />
-      </StyledRow>
-      <StyledRow>
-        <StyledLabel htmlFor="image">Bild:</StyledLabel>
-        <input type="file" id="image" onChange={changeProperty} />
-      </StyledRow>
-      {Object.keys(Animal.properties).map(property => {
-        let value = (animal as any)[property];
-        value = value === 0 ? '' : value;
-
-        return (
-          <StyledRow key={property}>
-            <StyledLabel htmlFor={property}>{Animal.properties[property].label}:</StyledLabel>
-            <input type="text" id={property} value={value} onChange={changeProperty} />
+      {({ isSubmitting, errors, setFieldValue }) => (
+        <StyledForm>
+          <StyledRow>
+            <StyledLabel htmlFor="name">Name:</StyledLabel>
+            <StyledField id="name" type="text" name="name" className={errors.name && 'error'} />
+            <ErrorMessage name="name" component={StyledError} />
           </StyledRow>
-        );
-      })}
-      <div>
-        <button type="submit">speichern</button>
-      </div>
-    </StyledForm>
+          <StyledRow>
+            <StyledLabel htmlFor="image">Bild:</StyledLabel>
+            <input
+              type="file"
+              id="image"
+              onChange={event => {
+                setFieldValue('image', event.currentTarget.files![0]);
+              }}
+            />
+            <ErrorMessage name="image" component={StyledError} />
+          </StyledRow>
+          {(Object.keys(Animal.properties) as (keyof Animal)[]).map(property => {
+            return (
+              <StyledRow key={property}>
+                <StyledLabel htmlFor={property}>{Animal.properties[property].label}:</StyledLabel>
+                <StyledField type="text" id={property} name={property} className={errors[property] && 'error'} />
+                <ErrorMessage name={property} component={StyledError} />
+              </StyledRow>
+            );
+          })}
+          <div>
+            <button type="submit" disabled={isSubmitting}>
+              speichern
+            </button>
+          </div>
+        </StyledForm>
+      )}
+    </Formik>
   );
 };
 

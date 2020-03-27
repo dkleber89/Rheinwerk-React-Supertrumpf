@@ -49,6 +49,16 @@
       "speed": "567",
       "image": "cvb.png",
       "id": 5
+    },
+    {
+      "name": "dfg",
+      "size": "5467",
+      "weight": "567",
+      "age": "567",
+      "offspring": "234",
+      "speed": "66",
+      "image": "dfg.png",
+      "id": 6
     }
   ]
 }
