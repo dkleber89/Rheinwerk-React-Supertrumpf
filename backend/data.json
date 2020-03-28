@@ -39,26 +39,6 @@
       "age": 70,
       "offspring": 60,
       "speed": 29
-    },
-    {
-      "name": "cvb",
-      "size": "123",
-      "weight": "234",
-      "age": "345",
-      "offspring": "456",
-      "speed": "567",
-      "image": "cvb.png",
-      "id": 5
-    },
-    {
-      "name": "dfg",
-      "size": "5467",
-      "weight": "567",
-      "age": "567",
-      "offspring": "234",
-      "speed": "66",
-      "image": "dfg.png",
-      "id": 6
     }
   ]
 }

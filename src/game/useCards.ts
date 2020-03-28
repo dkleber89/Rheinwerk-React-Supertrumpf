@@ -50,12 +50,12 @@ export default function useCards(): [State, (property: keyof Animal) => void] {
   function compare(property: keyof Animal) {
     let playersTurn = state.playersTurn;
 
-    const firstPlayer = state.player[0];
+    const firstPlayer = state.player[0] as Animal;
     let player = update(state.player, { $splice: [[0, 1]] });
     const firstComputer = state.computer[0];
     let computer = update(state.computer, { $splice: [[0, 1]] });
 
-    if (firstPlayer[property] > firstComputer[property]) {
+    if (firstPlayer[property]! > firstComputer[property]!) {
       playersTurn = true;
       player = update(player, { $push: [firstPlayer, firstComputer] });
 
@@ -63,7 +63,7 @@ export default function useCards(): [State, (property: keyof Animal) => void] {
         alert('Player wins');
         return;
       }
-    } else if (firstPlayer[property] < firstComputer[property]) {
+    } else if (firstPlayer[property]! < firstComputer[property]!) {
       playersTurn = false;
       computer = update(computer, { $push: [firstPlayer, firstComputer] });
 

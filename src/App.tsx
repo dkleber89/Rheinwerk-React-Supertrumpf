@@ -3,11 +3,12 @@ import update from 'immutability-helper';
 import axios from 'axios';
 
 import './App.css';
-import Game from './game/Game';
-import DarkMode from './game/DarkMode';
-import Login from './login/Login';
+// import Game from './game/Game';
+// import DarkMode from './game/DarkMode';
+// import Login from './login/Login';
 import Axios from 'axios';
-import Form from './admin/Form';
+// import Form from './admin/Form';
+import Admin from './admin/Admin';
 
 interface State {
   darkMode: boolean;
@@ -41,23 +42,7 @@ export default class App extends React.Component<{}, State> {
   };
 
   render() {
-    return (
-      <Form
-        onSubmit={animal => {
-          const data = new FormData();
-
-          data.append('name', animal.name);
-          data.append('image', animal.image);
-          data.append('size', animal.size.toString());
-          data.append('weight', animal.weight.toString());
-          data.append('age', animal.age.toString());
-          data.append('offspring', animal.offspring.toString());
-          data.append('speed', animal.speed.toString());
-
-          axios.post('http://localhost:3001/card', data, { headers: { 'content-type': 'multipart/form-data' } });
-        }}
-      />
-    );
+    return <Admin />;
     /*     return (
       <DarkMode.Provider value={this.state.darkMode}>
         {this.state.loggedIn && (
